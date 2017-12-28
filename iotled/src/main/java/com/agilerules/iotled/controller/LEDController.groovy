@@ -1,5 +1,6 @@
 package com.agilerules.iotled.controller
 
+import com.google.common.collect.Maps
 import com.pi4j.io.gpio.Pin
 import groovy.transform.CompileStatic;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +26,21 @@ class LEDController {
 		return "Hello World!";
 	}
 
+
 	@RequestMapping("/status")
-	Map<String,GpioPinDigitalOutput> status(){
-		return pins;
+	Map<String,Object> status(){
+		Map<String,Object> result = Maps.newHashMap()
+		pins.each {
+			def value = [
+					pinState : it.value.state,
+					pinMode : it.value.mode,
+					pinName : it.value.name,
+					pinProperties : it.value.properties,
+			]
+			result.put(it.key, value)
+		}
+
+		return result
 	}
 
 	@RequestMapping("/light")
