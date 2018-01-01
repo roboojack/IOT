@@ -44,6 +44,7 @@
 
         $( "#clickToggle" ).click(function(event) {
             $.getJSON(`${event.target.attributes.link.nodeValue}` , function(data) {});
+            location.reload(true)
         });
 
     });
