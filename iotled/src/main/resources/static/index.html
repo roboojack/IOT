@@ -20,6 +20,16 @@
 
     $.getJSON('/status' , function(data) {
         debugger
+        if(window.location.hostname == 'localhost') {
+            data = {
+                light: {
+                    pinState: "LOW",
+                    pinMode: "DIGITAL_OUTPUT",
+                    pinName: "light",
+                    pinProperties: { }
+                }
+            }
+        }
         var tbl_body = "";
         var odd_even = false;
         $.each(data, function(device, status) {
@@ -27,7 +37,7 @@
             $.each(this, function(k , v) {
                 tbl_row += `<td>${v}</td>`;
             })
-            tbl_body += `<tr><td>${device}</td>${tbl_row}<td><a id='clickToggle' class="btn btn-primary btn-lg" href="#" role="button" link='/${device}'>Toggle</a></td></tr>`;
+            tbl_body += `<tr><td>${device}</td>${tbl_row}<td><a id='clickToggle' class="btn btn-primary btn-sm" href="#" role="button" link='/${device}'>Toggle</a></td></tr>`;
             odd_even = !odd_even;
         })
         $("#target_table_id").html(tbl_body);
