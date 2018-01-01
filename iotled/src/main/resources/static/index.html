@@ -19,15 +19,7 @@
 <script>
 
     $.getJSON('/status' , function(data) {
-        data = {
-            light: {
-                pinState: "LOW",
-                pinMode: "DIGITAL_OUTPUT",
-                pinName: "light",
-                pinProperties: { }
-            }
-        }
-        console.log(data);
+        debugger
         var tbl_body = "";
         var odd_even = false;
         $.each(data, function(device, status) {
