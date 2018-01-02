@@ -19,13 +19,10 @@ import java.util.Map;
 @RestController
 class LEDController {
 
-	static final Map<String,GpioPinDigitalOutput> pins = new HashMap<String, GpioPinDigitalOutput>();
 
-	@RequestMapping("/")
-	String greeting(){
-		return "Hello World!";
-	}
-
+	static final Map<String,GpioPinDigitalOutput> pins = [
+            "light" : GpioFactory.getInstance().provisionDigitalOutputPin(RaspiPin.GPIO_08,"light", PinState.LOW)
+    ]
 
 	@RequestMapping("/status")
 	Map<String,Object> status(){
@@ -45,16 +42,12 @@ class LEDController {
 
 	@RequestMapping("/light")
 	Map light(){
-		return getPinTogleAndReturnState(RaspiPin.GPIO_08, "light")
+		return getPinTogleAndReturnState("light")
 	}
 
-	Map getPinTogleAndReturnState(Pin pinNumber, String pinName) {
-		GpioPinDigitalOutput pin = pins.get(pinName);
-		if(pin==null){
-			GpioController gpio = GpioFactory.getInstance();
-			pin = gpio.provisionDigitalOutputPin(pinNumber,pinName, PinState.LOW);
-			pins.put(pinName, pin);
-		}
+	Map getPinTogleAndReturnState(String pinName) {
+		GpioPinDigitalOutput pin = pins[pinName]
+        assert pin != null : "${pinName} is not a known device."
 		pin.toggle();
 		return [
 		        pinState : pin.state,
