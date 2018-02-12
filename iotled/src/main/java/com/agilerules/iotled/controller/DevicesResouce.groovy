@@ -1,23 +1,17 @@
 package com.agilerules.iotled.controller
 
 import com.google.common.collect.Maps
-import com.pi4j.io.gpio.Pin
-import groovy.transform.CompileStatic;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.pi4j.io.gpio.GpioController;
-import com.pi4j.io.gpio.GpioFactory;
-import com.pi4j.io.gpio.GpioPinDigitalOutput;
-import com.pi4j.io.gpio.PinState;
-import com.pi4j.io.gpio.RaspiPin;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.pi4j.io.gpio.GpioFactory
+import com.pi4j.io.gpio.GpioPinDigitalOutput
+import com.pi4j.io.gpio.PinState
+import com.pi4j.io.gpio.RaspiPin
+import groovy.transform.CompileStatic
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
 @CompileStatic
 @RestController
-class LEDController {
+class DevicesResouce {
 
 
 	static final Map<String,GpioPinDigitalOutput> pins = [

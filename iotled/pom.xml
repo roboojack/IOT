@@ -13,6 +13,8 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <camel-version>2.19.4</camel-version>
+
     </properties>
 
 
@@ -37,6 +39,22 @@
             <artifactId>guava</artifactId>
             <version>23.6-jre</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-spring-boot</artifactId>
+            <version>${camel-version}</version> <!-- use the same version as your Camel core version -->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-core</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-google-pubsub</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+
 
     </dependencies>
     <build>
