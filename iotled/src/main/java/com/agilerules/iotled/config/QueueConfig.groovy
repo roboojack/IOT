@@ -32,8 +32,6 @@ public class QueueConfig {
 
     @Bean
     GooglePubsubComponent gPubSub() {
-        if(pubsubProjectId == null)
-            throw new RuntimeException("where's my config???")
         return createComponent()
     }
 
